@@ -1,12 +1,6 @@
 package queue;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -42,6 +36,8 @@ public class QueueProducer {
             messageProducer = session.createProducer(destination);
             //发送消息
             TextMessage message = null;
+            BytesMessage bytesMessage = null;
+            byte[] bytes;
             for (int i=0; i<10; i++) {
                 //创建要发送的文本信息
                 message = session.createTextMessage("Queue消息测试" +(i+1));
